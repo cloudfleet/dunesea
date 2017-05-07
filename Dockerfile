@@ -1,10 +1,19 @@
-FROM library/python:3-alpine
+FROM library/alpine
 
 RUN mkdir /dunesea
 WORKDIR /dunesea
 
-COPY requirements.txt .
+ENV FLASK_APP=dunesea.py
+ENV STORAGE_LOCATION=/dunesea/storage
 
-RUN pip install -r requirements.txt
+VOLUME /dunesea/storage
 
-COPY ./* /dunesea
+RUN apk -U upgrade \
+  && apk add python3 py3-flask \
+  && rm -rf /tmp/* /var/cache/apk/*
+
+COPY dunesea.py /dunesea/
+
+EXPOSE 5000
+
+CMD flask run
