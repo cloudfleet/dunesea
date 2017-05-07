@@ -2,7 +2,7 @@ import os
 from flask import Flask, request, stream_with_context, Response, send_file
 from werkzeug.utils import secure_filename
 
-STORAGE_LOCATION = os.environ("STORAGE_LOCATION")
+STORAGE_LOCATION = os.environ["STORAGE_LOCATION"]
 
 app = Flask(__name__)
 
