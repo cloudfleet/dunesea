@@ -16,7 +16,7 @@ def hello_world():
 def retrieve_metadata(domain, backup_uuid):
     metadata_dir = _get_metadata_directory(domain)
     if backup_uuid:
-        send_file(open(os.path.join(metadata_dir, str(backup_uuid) + ".metadata")))
+        return send_file(os.path.join(metadata_dir, str(backup_uuid) + ".metadata"))
     else:
         file_list = [os.path.join(metadata_dir, file_name) for file_name in os.listdir(metadata_dir)]
         if len(file_list):
